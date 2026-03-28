@@ -5,7 +5,7 @@ function klikProject(nama) {
 </script>
 
 <template>
-  <div class="card" @click="klikProject('LogiGrade')">
+  <div class="container">
 
     <!-- HERO -->
     <section class="hero">
@@ -43,31 +43,31 @@ function klikProject(nama) {
     <section>
       <h2>Project</h2>
 
-      <div class="card">
+      <div class="card" @click="klikProject('Prototipe Sistem')">
         <h3>Prototipe Sistem Manajemen Informasi</h3>
         <p>
-          Merancang prototipe sistem manajemen informasi untuk lembaga pendidikan menggunakan Figma sebagai gambaran awal sistem.
+          Merancang prototipe sistem manajemen informasi untuk lembaga pendidikan menggunakan Figma.
         </p>
       </div>
 
-      <div class="card">
+      <div class="card" @click="klikProject('LogiGrade')">
         <h3>Aplikasi LogiGrade</h3>
         <p>
           Aplikasi desktop sederhana menggunakan Java Swing untuk membantu pengelolaan nilai mahasiswa.
         </p>
       </div>
 
-      <div class="card">
+      <div class="card" @click="klikProject('Graf')">
         <h3>Aplikasi Pengolahan Graf</h3>
         <p>
-          Mengimplementasikan algoritma DFS, BFS, MST, dan Topological Sort dalam aplikasi berbasis database.
+          Implementasi DFS, BFS, MST, dan Topological Sort berbasis database.
         </p>
       </div>
 
-      <div class="card">
+      <div class="card" @click="klikProject('Website Profil')">
         <h3>Website Profil Diri</h3>
         <p>
-          Website sederhana menggunakan HTML dan CSS untuk menampilkan informasi pribadi dan keahlian.
+          Website sederhana menggunakan HTML dan CSS.
         </p>
       </div>
     </section>
@@ -92,7 +92,7 @@ function klikProject(nama) {
 }
 
 /* HERO */
-..hero {
+.hero {
   text-align: center;
   margin-bottom: 40px;
   padding: 25px;
@@ -151,7 +151,6 @@ li {
   padding: 15px;
   margin-bottom: 12px;
   border-radius: 12px;
-  transition: 0.3s;
   cursor: pointer;
 }
 
@@ -159,6 +158,7 @@ li {
   transform: translateY(-6px) scale(1.01);
   background: #e6d5c3;
 }
+
 /* CONTACT */
 section {
   border: 1px solid #eee3d6;
