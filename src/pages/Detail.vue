@@ -1,93 +1,68 @@
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const product = ref(null)
+
+onMounted(async () => {
+  const id = route.params.id
+  const res = await fetch(`https://dummyjson.com/products/${id}`)
+  product.value = await res.json()
+})
+</script>
+
 <template>
   <div class="container" v-if="product">
-    <div class="card">
-      <img :src="product.thumbnail" alt="" />
 
-      <h1>{{ product.title }}</h1>
-      <p class="category">{{ product.category }}</p>
+    <img :src="product.thumbnail" class="img" />
 
-      <p class="desc">{{ product.description }}</p>
+    <h1>{{ product.title }}</h1>
 
-      <p class="price">
-        Rp {{ (product.price * 16000).toLocaleString('id-ID') }}
-      </p>
+    <p class="desc">{{ product.description }}</p>
 
-      <button @click="$router.back()">⬅ Kembali</button>
-    </div>
+    <p class="price">
+      Rp {{ (product.price * 15000).toLocaleString('id-ID') }}
+    </p>
+
+    <router-link to="/users" class="btn">⬅ Kembali</router-link>
+
   </div>
 
   <p v-else class="loading">Loading...</p>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      product: null
-    }
-  },
-
-  async mounted() {
-    const id = this.$route.params.id
-
-    try {
-      const res = await fetch(`https://dummyjson.com/products/${id}`)
-      const data = await res.json()
-      this.product = data
-    } catch (error) {
-      console.error(error)
-    }
-  }
-}
-</script>
-
 <style scoped>
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #f5f1eb;
-}
-
-.card {
-  background: #fffaf5;
+  max-width: 600px;
+  margin: auto;
   padding: 30px;
-  border-radius: 16px;
-  max-width: 500px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-img {
-  width: 200px;
+.img {
+  width: 250px;
   margin-bottom: 20px;
-}
-
-.category {
-  color: gray;
-  margin-bottom: 10px;
 }
 
 .desc {
   margin: 15px 0;
-  color: #5c4433;
+  color: #555;
 }
 
 .price {
-  font-size: 20px;
-  color: #b08968;
+  font-size: 18px;
   font-weight: bold;
+  color: #7f5539;
   margin-bottom: 20px;
 }
 
-button {
-  background: #7f5539;
+.btn {
+  padding: 10px 16px;
+  background: #b08968;
   color: white;
-  padding: 10px 15px;
-  border: none;
   border-radius: 8px;
-  cursor: pointer;
+  text-decoration: none;
 }
 
 .loading {
